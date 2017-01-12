@@ -1,0 +1,11 @@
+{
+  "name": "my-blog-webhook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Owen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
