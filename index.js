@@ -8,6 +8,7 @@ var PATH_TO_MYBLOG_ADMIN = '/usr/share/nginx/my-blog-admin/'
 
 app.post('/my-blog-deploy', function (req, res) {
     console.log('Begin myblog deploy');
+    var body = {};
 
     exec('git pull origin master', {
         cwd: PATH_TO_MYBLOG
@@ -18,6 +19,9 @@ app.post('/my-blog-deploy', function (req, res) {
 
             return;
         }
+
+        console.log(stdout);
+        body['git'] = stdout;
 
         return;
     });
@@ -32,10 +36,13 @@ app.post('/my-blog-deploy', function (req, res) {
             return;
         }
 
+        console.log(stdout);
+        body['build'] = stdout;
+
         return;
     });
 
-    res.sendStatus(200);
+    res.status(200).send(body);
 });
 
 app.listen('8082', function () {
