@@ -8,7 +8,6 @@ var PATH_TO_MYBLOG_ADMIN = '/usr/share/nginx/my-blog-admin/'
 
 app.post('/my-blog-deploy', function (req, res) {
     console.log('Begin myblog deploy');
-    console.log(req);
 
     exec('git pull origin master', {
         cwd: PATH_TO_MYBLOG
@@ -17,6 +16,9 @@ app.post('/my-blog-deploy', function (req, res) {
             console.log(err);
             return;
         }
+        console.log(stdout);
+        console.log(stderr);
+        return;
     });
 
     execFile(PATH_TO_MYBLOG + 'build.sh', ['-env production', '-api_region remote'], {
@@ -26,9 +28,12 @@ app.post('/my-blog-deploy', function (req, res) {
             console.log(err);
             return;
         }
+        console.log(stdout);
+        console.log(stderr);
+        return;
     })
 });
 
 app.listen('8082', function () {
-    console.log('Deploy server started');
+    console.log('Deploy server started, port is 8082');
 })
