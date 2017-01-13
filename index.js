@@ -26,7 +26,7 @@ app.post('/my-blog-deploy', function (req, res) {
         return;
     });
 
-    execFile(PATH_TO_MYBLOG + 'build.sh', ['-env production', '-api_region remote'], {
+    execFile(PATH_TO_MYBLOG + 'build.sh', ['-env', 'production', '-api_region', 'remote'], {
         cwd: PATH_TO_MYBLOG
     }, function (err, stdout, stderr) {
         if (err) {
