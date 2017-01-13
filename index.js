@@ -38,11 +38,10 @@ app.post('/my-blog-deploy', function (req, res) {
 
         console.log(stdout);
         body['build'] = stdout;
+        res.status(200).send(body);
 
         return;
     });
-
-    res.status(200).send(body);
 });
 
 app.listen('8082', function () {
